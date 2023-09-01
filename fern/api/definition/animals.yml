@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+imports:
+  root: __package__.yml
+
+service:
+  auth: false
+  base-path: ""
+  endpoints:
+    getanimals:
+      path: /animals
+      method: GET
+      auth: false
+      display-name: Get all animals
+      response:
+        docs: Successful operation
+        type: list<root.Animal>
+      errors: []
+
+    postanimals:
+      path: /animals
+      method: POST
+      auth: false
+      display-name: Create a new animal
+      request:
+        body:
+          type: root.Animal
+      response:
+        docs: Successful operation
+        type: root.Animal
+      errors: []
+
+    getanimalsid:
+      path: /animals/{id}
+      method: GET
+      auth: false
+      path-parameters:
+        id:
+          type: integer
+      display-name: Get an animal by ID
+      response:
+        docs: Successful operation
+        type: root.Animal
+      errors:
+        - root.NotFoundError
+
+    putanimalsid:
+      path: /animals/{id}
+      method: PUT
+      auth: false
+      path-parameters:
+        id:
+          type: integer
+      display-name: Update an animal by ID
+      request:
+        body:
+          type: root.Animal
+      response:
+        docs: Successful operation
+        type: root.Animal
+      errors:
+        - root.NotFoundError
+
+    deleteanimalsid:
+      path: /animals/{id}
+      method: DELETE
+      auth: false
+      path-parameters:
+        id:
+          type: integer
+      display-name: Delete an animal by ID
+      errors:
+        - root.NotFoundError

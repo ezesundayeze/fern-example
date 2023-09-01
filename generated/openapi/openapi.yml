@@ -1,0 +1,129 @@
+openapi: 3.0.1
+info:
+  title: api
+  version: ''
+paths:
+  /animals:
+    get:
+      operationId: animals_getanimals
+      tags:
+        - Animals
+      parameters: []
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Animal'
+      summary: Get all animals
+    post:
+      operationId: animals_postanimals
+      tags:
+        - Animals
+      parameters: []
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+      summary: Create a new animal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+  /animals/{id}:
+    get:
+      operationId: animals_getanimalsid
+      tags:
+        - Animals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema: {}
+      summary: Get an animal by ID
+    put:
+      operationId: animals_putanimalsid
+      tags:
+        - Animals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema: {}
+      summary: Update an animal by ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+    delete:
+      operationId: animals_deleteanimalsid
+      tags:
+        - Animals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ''
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema: {}
+      summary: Delete an animal by ID
+components:
+  schemas:
+    Animal:
+      title: Animal
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+      required:
+        - id
+        - name
+        - type
+  securitySchemes: {}

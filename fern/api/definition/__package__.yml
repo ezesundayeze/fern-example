@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+types:
+  Animal:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      type:
+        type: string
+
+errors:
+  NotFoundError:
+    status-code: 404
+    type: unknown

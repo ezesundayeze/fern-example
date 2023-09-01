@@ -1,0 +1,6 @@
+imports:
+  root: __package__.yml
+name: api
+display-name: api
+error-discrimination:
+  strategy: status-code
